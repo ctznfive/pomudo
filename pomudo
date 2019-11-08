@@ -1,0 +1,90 @@
+#! /bin/bash
+
+WORK=25
+REST=5
+LONGREST=30
+WORKAMOUNT=4
+PROGNAME=$(basename $0)
+BREAKMSG="Come on, let's take a break!"
+WORKMSG="All right, let's get to work!" 
+timelft="%s: %im "
+
+usage () {
+    cat <<- _EOF_
+         $PROGNAME usage: $PROGNAME [-w m] [-b m] [-h]
+			-w m / --work m : time for work (default: 25 min)
+			-r m / --rest m : time to rest (default: 5 min)
+			-l m / --longrest m : time for longer break (default: 30 min)
+			-h: print this help message
+_EOF_
+}
+
+playsound () {
+    	paplay sound.ogg&
+}
+
+focusblock () {
+		for ((i=$1; i>0; i--))
+				do
+						printf "$timelft\r" "$2" $i
+						sleep 1m
+				done       
+
+				echo -e "\n$3" && notify-send "$3" && playsound 
+				read -n 1 -s -r -p "Press q to exit or any key to continue..."
+				echo -e "\n"
+				if [[ "$REPLY" == "q" ]]; then
+						exit
+				fi
+}
+		
+
+while [[ -n $1 ]]; do
+        case $1 in
+                -w | --work)    	shift
+									if [[ "$1" =~ ^[0-9]+$ ]]; then
+										WORK=$1
+									else
+										echo "Please enter the number of minutes" >&2
+										exit 1
+									fi
+                                	;;
+                -r | --rest)    	shift
+									if [[ "$1" =~ ^[0-9]+$ ]]; then
+										REST=$1
+									else
+										echo "Please enter the number of minutes" >&2
+										exit 1
+									fi
+                                	;;
+                 -l | --longrest)	shift
+									if [[ "$1" =~ ^[0-9]+$ ]]; then
+										LONGREST=$1
+									else
+										echo "Please enter the number of minutes" >&2
+										exit 1
+									fi
+                                	;;
+                -h | --help)    	usage
+                                	exit 
+                                	;;
+                *)              	usage >&2
+                                	exit 1
+                                	;;
+        esac
+        shift
+done
+
+
+WRKAMTMP=$WORKAMOUNT
+while (( WORKAMOUNT > 0 )); do
+		focusblock $WORK "Focus Work" "$BREAKMSG"
+		if ((WORKAMOUNT != 1)); then
+				focusblock $REST "Relax Time" "$WORKMSG"
+				(( WORKAMOUNT-- ))
+		else
+				focusblock $LONGREST "Take a longer break" "$WORKMSG"
+				WORKAMOUNT=$WRKAMTMP
+		fi
+done
+
