@@ -21,10 +21,11 @@ Simply place "pomudo"-file on your $PATH or run it by specifying the full path
 
 ## How to use
 pomudo [-w m] [-b m] [-l m] [-h]
-			-w m / --work m : time for work (default: 25 min)
-			-r m / --rest m : time to rest (default: 5 min)
-			-l m / --longrest m : time for longer break (default: 30 min)
-			-h: print this help message
+
+	-w m / --work m : time for work (default: 25 min)
+	-r m / --rest m : time to rest (default: 5 min)
+	-l m / --longrest m : time for longer break (default: 30 min)
+	-h: print this help message
       
 ## Dependencies
 
