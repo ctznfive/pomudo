@@ -11,7 +11,7 @@ timelft="%s: %im "
 
 usage () {
     cat <<- _EOF_
-         $PROGNAME usage: $PROGNAME [-w m] [-b m] [-h]
+         $PROGNAME usage: $PROGNAME [-w m] [-b m] [-l m] [-h]
 			-w m / --work m : time for work (default: 25 min)
 			-r m / --rest m : time to rest (default: 5 min)
 			-l m / --longrest m : time for longer break (default: 30 min)
