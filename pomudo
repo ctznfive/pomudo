@@ -42,28 +42,28 @@ focusblock () {
 while [[ -n $1 ]]; do
         case $1 in
                 -w | --work)    	shift
-									if [[ "$1" =~ ^[0-9]+$ ]]; then
-										WORK=$1
-									else
-										echo "Please enter the number of minutes" >&2
-										exit 1
-									fi
+					if [[ "$1" =~ ^[0-9]+$ ]]; then
+						WORK=$1
+					else
+						echo "Please enter the number of minutes" >&2
+						exit 1
+					fi
                                 	;;
                 -r | --rest)    	shift
-									if [[ "$1" =~ ^[0-9]+$ ]]; then
-										REST=$1
-									else
-										echo "Please enter the number of minutes" >&2
-										exit 1
-									fi
+					if [[ "$1" =~ ^[0-9]+$ ]]; then
+						REST=$1
+					else
+						echo "Please enter the number of minutes" >&2
+						exit 1
+					fi
                                 	;;
                  -l | --longrest)	shift
-									if [[ "$1" =~ ^[0-9]+$ ]]; then
-										LONGREST=$1
-									else
-										echo "Please enter the number of minutes" >&2
-										exit 1
-									fi
+					if [[ "$1" =~ ^[0-9]+$ ]]; then
+						LONGREST=$1
+					else
+						echo "Please enter the number of minutes" >&2
+					exit 1
+					fi
                                 	;;
                 -h | --help)    	usage
                                 	exit 
