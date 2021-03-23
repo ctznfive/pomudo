@@ -29,6 +29,6 @@ pomudo [-w m] [-b m] [-l m] [-h]
       
 ## Dependencies
 
-bash, coreutils, paplay and notify-send (for notifications)
+bash, coreutils, paplay, notify-send
       
 
